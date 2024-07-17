@@ -1,7 +1,7 @@
 {
     "apps": [
         {
-            "appId": "4a59590b",
+            "appId": "ace12bcd",
             "dependencyInstallCommand": "pnpm install",
             "webBuildCommand": "pnpm build",
             "androidPath": "android",
