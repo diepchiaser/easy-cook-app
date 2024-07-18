@@ -10,12 +10,20 @@
       }
     }, 2000);
   }
+  const goBack = () => router.push('/')
 </script>
 <template>
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Random</ion-title>
+        <van-nav-bar
+          title="Random"
+          left-text="Home"
+          right-text="FAQ"
+          left-arrow
+          @click-left="goBack"
+          @click-right="nextHelp"
+        />
       </ion-toolbar>
     </ion-header>
 
@@ -24,24 +32,10 @@
         <ion-refresher-content></ion-refresher-content>
       </ion-refresher>
       <div flex flex-col>
-        <div flex>
-          <BackBtn ml-3 />
-          <CommonHeader flex items-center justify-center ml-5>
-            {{ $t('今天吃什么') }}
-          </CommonHeader>
-        </div>
         <div flex flex-grow flex-col items-center justify-center>
           <RandomRecipe />
         </div>
       </div>
-      <div flex justify-center>
-          <CommonHeader flex items-center justify-center ml-5>
-              {{ $t('帮助') }}
-          </CommonHeader>
-          <YlfIconButton
-            icon="i-ri-arrow-right-s-line"
-            @click="nextHelp" />
-       </div>
     </ion-content>
   </ion-page>
 </template>

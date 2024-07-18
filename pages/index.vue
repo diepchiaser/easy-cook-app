@@ -3,6 +3,7 @@ import Default from '~/layouts/default.vue';
 definePageMeta({
   alias: ['/'],
 });
+const color = useColorMode()
 const rStore = useRecipeStore();
 const router = useIonRouter();
 const nextRandom = () => {
@@ -15,13 +16,26 @@ const handleRefresh = (event: CustomEvent) => {
       }
     }, 2000);
 }
+const html = document.documentElement.classList;
+watch(() => color.preference, (newVal) => {
+    if (newVal === 'dark') {
+      html.add('van-theme-dark');
+    } else {
+      html.remove('van-theme-dark');
+    }
+});
 </script>
 
 <template>
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Home</ion-title>
+        <van-nav-bar
+          title="Home"
+          right-text="Random"
+          @click-right="nextRandom"
+        />
+
       </ion-toolbar>
     </ion-header>
 
@@ -44,15 +58,7 @@ const handleRefresh = (event: CustomEvent) => {
           {{ $t('cookToday') }}
         </p>
 
-        <ChooseFood />
-        <div flex justify-center>
-          <CommonHeader flex items-center justify-center ml-5>
-              {{ $t('今天吃什么') }}
-          </CommonHeader>
-          <YlfIconButton
-            icon="i-ri-arrow-right-s-line"
-            @click="nextRandom" />
-        </div>
+       <ChooseFood />
      </Default>
     </ion-content>
   </ion-page>

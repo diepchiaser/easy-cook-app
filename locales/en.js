@@ -678,7 +678,8 @@ export default {
         煎蛋方便面: "Fried Egg Instant Noodles",
         奶汤方便面: "Creamy Instant Noodle Soup",
         朝鲜冷面: "Korean Cold Noodles (Instant Version)",
-        正确煮方便面: "Perfectly Cooked Instant Noodles"
+        正确煮方便面: "Perfectly Cooked Instant Noodles",
+        微波炉版牛奶炖饭: "Microwave Milk Risotto"
     },
     faq: {
         未来计划: 'Future Plans?',

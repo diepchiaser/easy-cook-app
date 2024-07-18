@@ -4,18 +4,71 @@ import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } fro
 import { db } from '~/utils/db'
 
 const isOpen = ref(false)
+const show = ref(false)
 
 function closeModal() {
   isOpen.value = false
 }
+const showLoading = () => {
+  show.value = true
+}
 function openModal() {
   isOpen.value = true
 }
+watch (show, (value) => {
+  if (value) {
+    setTimeout(() => {
+      show.value = false
+      isOpen.value = true
+      openModal()
+    }, 500)
+  }
+})
+const {t: $t} = useI18n()
+const mapDishTag = (text: string) => {
+    const mappings: { [key: string]: string } = {
+        '电饭煲版蛋糕（废手版）': '电饭煲版蛋糕',
+        '骨头汤火锅锅底做法（全鸡版）': '骨头汤火锅锅底做法',
+        '清汤锅万能高汤做法（鸡蛋+猪肉）': '清汤锅万能高汤做法',
+        '油墩子/腰子饼': '油墩子腰子饼',
+        '微波炉版厚蛋烧（没芝士就别选了）': '微波炉版厚蛋烧',
+        '电饭煲卤菜（开店级别）': '电饭煲卤菜',
+        '家常黄焖鸡（多调料版）': '家常黄焖鸡',
+        '三杯鸡（无九层塔版）': '三杯鸡',
+        '电饭煲叉烧肉（叉烧酱版）': '电饭煲叉烧肉',
+        '日式汉堡排（废手）': '日式汉堡排',
+        '电饭煲版吐司（尽量不做，废手）': '电饭煲版吐司',
+        '年轮蛋糕（难度max）': '年轮蛋糕',
+        '空气炸锅甜点（没酵母别选）': '空气炸锅甜点',
+        '豆腐饭（蛋炒饭）': '豆腐饭',
+        '富贵金钱蛋（湖南口味辣）': '富贵金钱蛋',
+        '6阶番茄炒蛋': '阶番茄炒蛋',
+        '莲花洋葱（消耗洋葱！）': '莲花洋葱',
+        '蒸蛋羹（硬核0失败版）': '蒸蛋羹硬',
+        '雪碧拌面（要雪碧+老干妈）': '雪碧拌面',
+        '早餐白面包（无鸡蛋版）': '早餐白面包',
+        '朝鲜冷面（方便面版）': '朝鲜冷面'
+    };
+    return mappings[text] || '';
+};
+
+const speciaLabel = (text: string | null) => {
+    if (text) {
+        const mappedTag = mapDishTag(text);
+        if (mappedTag) {
+            return mappedTag;
+        }
+
+        return text;
+    }
+    return null;
+};
 
 const keyword = ref('')
 async function getFilterRecipes(keyword: string) {
   return db.recipes.filter((recipe) => {
-    return recipe.name.includes(keyword)
+    const recipeName = speciaLabel(recipe.name)
+    return $t('dishTag.'+recipeName).includes(keyword)
   }).toArray()
 }
 const filteredRecipes = computedAsync(async () => {
@@ -28,10 +81,16 @@ const filteredRecipes = computedAsync(async () => {
     absolute right-3 top-5
     class="icon-btn hover:text-yellow-400 !outline-none"
     text-xl
-    title="切换" @click="openModal"
+    title="切换" @click="showLoading"
   >
     <div i="ri-search-line" />
   </YlfIconButton>
+
+  <van-overlay :show="show">
+    <div class="wrapper" @click.stop>
+      <van-loading type="spinner" color="#1989fa" />
+    </div>
+  </van-overlay>
 
   <TransitionRoot appear :show="isOpen" as="template">
     <Dialog as="div" class="relative z-10" @close="closeModal">
@@ -103,3 +162,18 @@ const filteredRecipes = computedAsync(async () => {
     </Dialog>
   </TransitionRoot>
 </template>
+
+<style scoped>
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .block {
+    width: 120px;
+    height: 120px;
+    background-color: #fff;
+  }
+</style>

@@ -25,7 +25,9 @@ export default defineNuxtConfig({
     // See https://github.com/unjs/ofetch/pull/366
     'nuxt-fix-ofetch',
     "@nuxtjs/ionic",
-    "@nuxtjs/i18n"
+    "@nuxtjs/i18n",
+    "@vant/nuxt",
+    "nuxt-icons"
   ],
 
   i18n: {
