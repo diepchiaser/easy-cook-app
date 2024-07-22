@@ -18,6 +18,9 @@ export type SearchMode = 'survival' | 'loose' | 'strict'
 export const useRecipeStore = defineStore('recipe', () => {
   const gtm = useGtm()
   const { settings } = useAppStore()
+  const {t:$t} = useI18n({
+    locale: 'en'
+  })
 
   /**
    * 搜索关键字
@@ -114,8 +117,12 @@ export const useRecipeStore = defineStore('recipe', () => {
       }).toArray()
     }
 
-    if (keyword.value)
-      result = result.filter(item => item.name.includes(keyword.value))
+    if (keyword.value) {
+      result = result.filter(item => {
+        const name = $t(`dishTag.${item.name}`).toLowerCase();
+        return name.includes(keyword.value.toLowerCase());
+      });
+    }    
 
     isSearching.value = false
     return result
