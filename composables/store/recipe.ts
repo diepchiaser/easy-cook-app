@@ -75,6 +75,11 @@ export const useRecipeStore = defineStore('recipe', () => {
   }
 
   const isSearching = ref(false)
+
+  const currentPage = ref(1)
+  const itemsPerPage = ref(10)
+  const recipesLength = ref(0)
+
   /**
    * 搜索菜谱
    */
@@ -123,6 +128,11 @@ export const useRecipeStore = defineStore('recipe', () => {
         return name.includes(keyword.value.toLowerCase());
       });
     }    
+    
+    recipesLength.value = result.length
+    const start = (currentPage.value - 1) * itemsPerPage.value
+    const end = start + itemsPerPage.value
+    result = result.slice(start, end)
 
     isSearching.value = false
     return result
@@ -131,7 +141,7 @@ export const useRecipeStore = defineStore('recipe', () => {
   // 默认严格模式
   const displayedRecipe = ref<RecipeItem[]>([])
   // fix curStuff watch
-  watch(() => [keyword.value, selectedStuff.value, curTool.value, curMode.value], async () => {
+  watch(() => [keyword.value, selectedStuff.value, curTool.value, curMode.value, currentPage.value, itemsPerPage.value], async () => {
     displayedRecipe.value = [...(await searchRecipes())]
   })
 
@@ -155,17 +165,28 @@ export const useRecipeStore = defineStore('recipe', () => {
     })
   }
 
-  const recipesLength = ref(0)
-  onMounted(async () => {
-    db.recipes.count().then((count) => {
+  const fetchAndSetRecipes = async () => {
+    await db.recipes.count().then((count) => {
       recipesLength.value = count
     })
-
     displayedRecipe.value = await searchRecipes()
-  })
+  }
+
+  const changePage = () => {
+    if (currentPage.value < recipesLength.value) {
+        currentPage.value++;
+    }
+
+    if (currentPage.value > recipesLength.value) {
+        currentPage.value--;
+    }
+  }
 
   return {
     recipesLength,
+
+    fetchAndSetRecipes,
+    changePage,
 
     keyword,
     curTool,
@@ -184,6 +205,8 @@ export const useRecipeStore = defineStore('recipe', () => {
 
     // useRecipe
     displayedRecipe,
+    currentPage,
+    itemsPerPage,
     clickTool,
   }
 })

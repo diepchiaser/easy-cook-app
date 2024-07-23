@@ -154,6 +154,7 @@ const filteredRecipes = computedAsync(async () => {
               </DialogTitle>
               <div flex="~ col grow" overflow="auto" class="mt-2" text-xs>
                 <DishTag v-for="item, i in filteredRecipes" :key="i" :dish="item" />
+                <van-back-top />
               </div>
             </DialogPanel>
           </TransitionChild>

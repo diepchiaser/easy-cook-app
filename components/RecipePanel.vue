@@ -8,6 +8,10 @@ const { selectedStuff, curTool } = storeToRefs(rStore)
 const showSearchInput = ref(false)
 
 const showTooltip = computed(() => !selectedStuff.value.length && !curTool.value)
+onMounted(async () => {
+  await rStore.fetchAndSetRecipes()
+})
+const pageCount = computed(() => Math.ceil(rStore.recipesLength / rStore.itemsPerPage))
 </script>
 
 <template>
@@ -43,6 +47,14 @@ const showTooltip = computed(() => !selectedStuff.value.length && !curTool.value
 
         <div v-else-if="rStore.displayedRecipe.length">
           <DishTag v-for="item, i in rStore.displayedRecipe" :key="i" :dish="item" />
+          <van-pagination v-model="rStore.currentPage" :page-count="pageCount" mode="simple">
+            <template #prev-text>
+              <van-icon name="arrow-left" />
+            </template>
+            <template #next-text>
+              <van-icon name="arrow" />
+            </template>
+          </van-pagination>
         </div>
 
         <div v-else text="sm">

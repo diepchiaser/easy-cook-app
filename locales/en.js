@@ -11,7 +11,7 @@ export default {
     模糊匹配: 'Fuzzy match',
     严格匹配: 'Strict match',
     生存模式: 'Survival mode',
-    来看看组合出的菜谱吧: 'Let\'s see the recipes that have been combined',
+    来看看组合出的菜谱吧: 'Check out!',
     你要先选食材或工具哦: 'You need to select ingredients or tools first',
     还没有完美匹配的菜谱呢: 'There is no perfect match for the recipe yet',
     大胆尝试一下: 'Boldly try',
