@@ -1,38 +1,90 @@
-<script lang="ts" setup>
+<script setup>
 import dayjs from 'dayjs'
 import { recipeHistories } from '~/composables/store/history'
 
-definePageMeta({
-  layout: 'child',
-  title: '历史记录',
-})
-
-// todo
-// clear one history
 function clearAllHistory() {
   recipeHistories.value = []
 }
+
+const loading = ref(false)
+const finished = ref(false)
+
+const onLoad = () => {
+  loading.value = true
+  setTimeout(() => {
+    recipeHistories.value.push({
+      time: Date.now(),
+      recipe: {
+        name: 'Recipe',
+        image: 'https://img.yzcdn.cn/vant/apple-1.jpg',
+        description: 'Description',
+      },
+    })
+    loading.value = false
+    finished.value = recipeHistories.value.length >= 30
+  }, 1000)
+}
+
+const beforeClose = ({ position }) => {
+  switch (position) {
+    case 'left':
+    case 'cell':
+    case 'outside':
+      return true;
+    case 'right':
+      return new Promise((resolve) => {
+        showConfirmDialog({
+          title: 'Are you sure to delete?',
+          cancelButtonText: 'Cancel',
+          confirmButtonText: 'Delete',
+        })
+          .then(() => {
+            clearAllHistory();
+            resolve(true);
+          })
+          .catch(() => resolve(false));
+      });
+  }
+};
+
+
 </script>
 
 <template>
-  <div pt-2>
-    <div
-      text="blue-900 dark:blue-200"
-      bg="blue-300 op-20 hover:(blue-800 op-20) dark:hover:(blue-200 op-20)"
-      class="inline-flex items-center justify-center border border-transparent rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-      @click="clearAllHistory"
-    >
-      <div i-ri-eraser-line />
-      <span class="ml-1">清空记录</span>
-    </div>
+  <ion-page>
+    <ion-header>
+      <ion-toolbar>
+        <van-nav-bar 
+          :title="$t('历史记录')"
+          left-text="Back"
+          left-arrow
+          @click-left="() => $router.back()"
+         />
+      </ion-toolbar>
+    </ion-header>
 
-    <div flex="~ col">
-      <div v-for="history in recipeHistories" :key="history.recipe.name" mt-2>
-        <StapleTag :active="false">
-          {{ dayjs(history.time).format('YYYY-MM-DD HH:mm:ss') }}
-        </StapleTag>
-        <DishTag :dish="history.recipe" />
-      </div>
-    </div>
-  </div>
+    <ion-content class="ion-padding">
+        <van-col span="24">
+          <van-divider content-position="left">{{ $t('历史记录') }}</van-divider>
+          <van-list
+            v-model:loading="loading"
+            :finished="finished"
+            finished-text="Finished"
+            @load="onLoad">
+            <van-cell v-for="history in recipeHistories" :key="history.recipe.name" style="background: unset;">
+              <van-swipe-cell :before-close="beforeClose" style="text-align: left;">
+                <StapleTag :active="false">
+                  {{ dayjs(history.time).format('YYYY-MM-DD HH:mm:ss') }}
+                </StapleTag>
+                <DishTag :dish="history.recipe" />
+                <template #right>
+                  <van-button square text="Delete All" type="danger" class="delete-button" />
+                </template>
+              </van-swipe-cell>
+              <van-back-top />
+            </van-cell>
+          </van-list>
+        </van-col>
+    </ion-content>
+  </ion-page>
 </template>

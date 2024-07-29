@@ -24,6 +24,7 @@ watch(() => color.preference, (newVal) => {
       html.remove('van-theme-dark');
     }
 });
+const checked = ref(true);
 </script>
 
 <template>

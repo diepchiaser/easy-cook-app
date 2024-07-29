@@ -30,16 +30,9 @@ export default defineNuxtConfig({
     "nuxt-icons"
   ],
 
-  i18n: {
-    locales: [
-      { code: 'en', iso: 'en-US', file: 'en.js' },
-      { code: 'vi', iso: 'vi-VN', file: 'vi.js' }
-    ],
-    defaultLocale: 'en',
-    langDir: 'locales/',
-    strategy: 'prefix_except_default',
-    vueI18n: 'en'
-  },
+  plugins: [
+    '~/plugins/i18n.ts',
+  ],
 
   experimental: {
     // when using generate, payload js assets included in sw precache manifest
