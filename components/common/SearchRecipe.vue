@@ -24,7 +24,7 @@ watch (show, (value) => {
     }, 500)
   }
 })
-const {t: $t} = useI18n()
+const $t = useTranslation();
 const mapDishTag = (text: string) => {
     const mappings: { [key: string]: string } = {
         '电饭煲版蛋糕（废手版）': '电饭煲版蛋糕',

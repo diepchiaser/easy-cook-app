@@ -9,6 +9,7 @@ const router = useIonRouter();
 const nextRandom = () => {
   router.push('/random');
 }
+const currentDate = useLocaleDate(new Date())
 const handleRefresh = (event: CustomEvent) => {
     setTimeout(() => {
       if (event.target) {
@@ -16,6 +17,7 @@ const handleRefresh = (event: CustomEvent) => {
       }
     }, 2000);
 }
+
 const html = document.documentElement.classList;
 watch(() => color.preference, (newVal) => {
     if (newVal === 'dark') {
@@ -24,7 +26,11 @@ watch(() => color.preference, (newVal) => {
       html.remove('van-theme-dark');
     }
 });
-const checked = ref(true);
+let isShowDate = ref(false);
+
+const showDate = () => {
+  isShowDate.value = !isShowDate.value;
+}
 </script>
 
 <template>
@@ -32,11 +38,16 @@ const checked = ref(true);
     <ion-header>
       <ion-toolbar>
         <van-nav-bar
-          title="Home"
+          title="Cook"
           right-text="Random"
           @click-right="nextRandom"
-        />
-
+          @click-left="showDate"
+        >
+          <template #left>
+              <van-icon name="clock" />
+              <span class="date" v-if="isShowDate">{{ currentDate }}</span>
+          </template>
+        </van-nav-bar>
       </ion-toolbar>
     </ion-header>
 

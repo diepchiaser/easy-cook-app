@@ -24,7 +24,7 @@ const pageCount = computed(() => Math.ceil(rStore.recipesLength / rStore.itemsPe
 
     <ToggleMode />
 
-    <button absolute right-4 top-4 @click="showSearchInput = !showSearchInput">
+    <button absolute right-2 top-4 @click="showSearchInput = !showSearchInput">
       <div v-if="!showSearchInput" i-ri-search-line />
       <div v-else i-ri-search-fill />
     </button>

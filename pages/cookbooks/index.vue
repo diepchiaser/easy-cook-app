@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const {t: $t} = useI18n()
+const $t = useTranslation();
 definePageMeta({
   layout: 'child',
   title: 'Custom recipes',

@@ -18,9 +18,7 @@ export type SearchMode = 'survival' | 'loose' | 'strict'
 export const useRecipeStore = defineStore('recipe', () => {
   const gtm = useGtm()
   const { settings } = useAppStore()
-  const {t:$t} = useI18n({
-    locale: 'en'
-  })
+  const $t = useTranslation();
 
   /**
    * 搜索关键字

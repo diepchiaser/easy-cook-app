@@ -34,9 +34,7 @@ function toggleStuff(item: StuffItem, category = '', _e?: Event) {
   })
 }
 
-const { t: $t } = useI18n({
-  locale: 'en',
-})
+const $t = useTranslation();
 const mapDishTag = (text: string) => {
     const mappings: { [key: string]: string } = {
         '鱼（Todo）': '鱼',

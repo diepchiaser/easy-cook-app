@@ -37,27 +37,14 @@ const showLoading = async () => {
     loadingElement.innerHTML = '<img src="/img/loading_cook.gif" alt="Loading...">';
   }
 }
+const themeVars = reactive({dropdownMenuShadow: 'none'});
 </script>
 
 <template>
-  <VitePwaManifest />
-  <ion-app>
-    <ion-router-outlet />
-  </ion-app>
+  <van-config-provider :theme-vars="themeVars">
+    <VitePwaManifest />
+    <ion-app>
+      <ion-router-outlet />
+    </ion-app>
+  </van-config-provider>
 </template>
-
-<style scoped>
-.custom-loading {
-  /* Tùy chỉnh style cho loading indicator */
-  .loading-wrapper {
-    background: transparent;
-    box-shadow: none;
-  }
-
-  img {
-    width: 100px; /* Đặt kích thước ảnh */
-    height: auto;
-  }
-}
-
-</style>

@@ -1,8 +1,12 @@
 <script lang="ts" setup>
-import { useI18n } from 'vue-i18n';
-
 const router = useIonRouter();
 const app = useAppStore()
+const locales = useLocales()
+const locale = useI18nLocale()
+const time = ref(useLocaleDate(new Date()))
+
+console.log(locale.value)
+console.log(locales)
 
 const handleRefresh = (event: CustomEvent) => {
     setTimeout(() => {
@@ -16,20 +20,12 @@ const backUser = () => {
   router.push('/user');
 }
 
-const { locale } = useI18n();
-const selectedLanguage = ref(locale.value);
-// remove -US
-selectedLanguage.value = selectedLanguage.value.replace(/-.*$/, '');
-locale.value = locale.value.replace(/-.*$/, '');
-
-const langs = [
-  { text: 'English', value: 'en'},
-  { text: 'Vietnamese', value: 'vi'},
-]
-
-watch(selectedLanguage, (newLocale: any) => {
+watch(locale, (newLocale: any) => {
   locale.value = newLocale;
+  // change the locale, is date change too?
+  time.value = useLocaleDate(new Date(), newLocale).value;
 });
+
 </script>
 
 <template>
@@ -37,7 +33,7 @@ watch(selectedLanguage, (newLocale: any) => {
     <ion-header>
       <ion-toolbar>
         <van-nav-bar
-          title=""
+          :title="time"
           left-text="Random"
           left-arrow
           @click-left="backUser"
@@ -52,7 +48,7 @@ watch(selectedLanguage, (newLocale: any) => {
       <van-cell center :title="$t('Language')">
         <template #right-icon>
           <van-dropdown-menu>
-            <van-dropdown-item v-model="selectedLanguage" :options="langs" />
+            <van-dropdown-item v-model="locale" :options="locales" />
           </van-dropdown-menu>
       </template>
       </van-cell>
