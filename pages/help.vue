@@ -1,38 +1,47 @@
 <script lang="ts" setup>
-const router = useIonRouter();
-const backRandom = () => {
-  router.push('/random');
+const router = useIonRouter()
+function backRandom() {
+  router.push('/random')
 }
-const nextUser = () => {
-  router.push('/user');
+function nextUser() {
+  router.push('/user')
 }
-const handleRefresh = (event: CustomEvent) => {
-    setTimeout(() => {
-      if (event.target) {
-        (event.target as HTMLIonRefresherElement).complete();
-      }
-    }, 2000);
+function handleRefresh(event: CustomEvent) {
+  setTimeout(() => {
+    if (event.target) {
+      (event.target as HTMLIonRefresherElement).complete()
+    }
+  }, 2000)
 }
 </script>
+
 <template>
   <ion-page>
     <ion-header>
       <ion-toolbar>
         <van-nav-bar
-          title="FAQ"
-          left-text="Random"
-          :right-text="$t('我的')"
+          :title="$t('FAQ')"
           left-arrow
           @click-left="backRandom"
           @click-right="nextUser"
-        />
+        >
+          <template #left>
+            <van-icon name="arrow-double-left" dot size="30" />
+          </template>
+
+          <template #right>
+            <van-icon name="user-o" size="30" />
+          </template>
+        </van-nav-bar>
       </ion-toolbar>
     </ion-header>
 
     <ion-content>
-      <ion-refresher slot="fixed" :pull-factor="0.5" :pull-min="100" :pull-max="200" @ionRefresh="handleRefresh($event)">
-        <ion-refresher-content></ion-refresher-content>
-      </ion-refresher>
+      <template #fixed>
+        <ion-refresher :pull-factor="0.5" :pull-min="100" :pull-max="200" @ion-refresh="handleRefresh($event)">
+          <ion-refresher-content />
+        </ion-refresher>
+      </template>
       <div class="w-full">
         <InstallPwa />
 
@@ -174,5 +183,4 @@ const handleRefresh = (event: CustomEvent) => {
 .ml-custom {
   margin-left: 28%;
 }
-
 </style>

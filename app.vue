@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { loadingController } from '@ionic/vue'
 import { installPrompt } from './utils/pwa'
 import { appName } from '~/constants'
 import { useIndexedDB } from '~/composables/db'
-import { loadingController } from '@ionic/vue';
 
 // https://nuxt.com/docs/api/composables/use-head
 useHead({
@@ -23,21 +23,21 @@ onMounted(() => {
   indexedDB.init()
 })
 
-const showLoading = async () => {
+async function showLoading() {
   const loading = await loadingController.create({
     duration: 3000,
     spinner: null,
     cssClass: 'custom-loading',
     message: 'Loading...',
-  });
-  await loading.present();
+  })
+  await loading.present()
 
-  const loadingElement = document.querySelector('.custom-loading .loading-wrapper');
+  const loadingElement = document.querySelector('.custom-loading .loading-wrapper')
   if (loadingElement) {
-    loadingElement.innerHTML = '<img src="/img/loading_cook.gif" alt="Loading...">';
+    loadingElement.innerHTML = '<img src="/img/loading_cook.gif" alt="Loading...">'
   }
 }
-const themeVars = reactive({dropdownMenuShadow: 'none'});
+const themeVars = reactive({ dropdownMenuShadow: 'none' })
 </script>
 
 <template>

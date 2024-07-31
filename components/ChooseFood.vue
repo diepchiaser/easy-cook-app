@@ -34,34 +34,25 @@ function toggleStuff(item: StuffItem, category = '', _e?: Event) {
   })
 }
 
-const $t = useTranslation();
-const mapDishTag = (text: string) => {
-    const mappings: { [key: string]: string } = {
-        '鱼（Todo）': '鱼',
-    };
-    return mappings[text] || '';
-};
+const $t = useTranslation()
+function mapDishTag(text: string) {
+  const mappings: { [key: string]: string } = {
+    '鱼（Todo）': '鱼',
+  }
+  return mappings[text] || ''
+}
 
-const speciaLabel = (text: string | null) => {
-    if (text) {
-        const mappedTag = mapDishTag(text);
-        if (mappedTag) {
-            return mappedTag;
-        }
-
-        return text;
+function speciaLabel(text: string | null) {
+  if (text) {
+    const mappedTag = mapDishTag(text)
+    if (mappedTag) {
+      return mappedTag
     }
-    return null;
-};
-const translate = (food: any, name: string|null) => {
-  return food.map((item: any) => {
-      return {
-          ...item,
-          name: $t(`${name}.${speciaLabel(item.name)}`),
-      }
-  })
-} 
 
+    return text
+  }
+  return null
+}
 </script>
 
 <template>
@@ -83,7 +74,7 @@ const translate = (food: any, name: string|null) => {
           <span v-else-if="item.image" class="inline-flex">
             <img class="inline-flex" w="2" h="2" width="10" height="10" :src="item.image" :alt="item.name">
           </span>
-          <span class="inline-flex" m="l-1">{{ $t('vegetable.' + item.name) }}</span>
+          <span class="inline-flex" m="l-1">{{ $t(`vegetable.${item.name}`) }}</span>
         </VegetableTag>
       </div>
     </div>
@@ -98,7 +89,7 @@ const translate = (food: any, name: string|null) => {
           @click="toggleStuff(item, 'meat')"
         >
           <span>{{ item.emoji }}</span>
-          <span m="l-1">{{ $t('meat.' + speciaLabel(item.name)) }}</span>
+          <span m="l-1">{{ $t(`meat.${speciaLabel(item.name)}`) }}</span>
         </MeatTag>
       </div>
     </div>
@@ -113,7 +104,7 @@ const translate = (food: any, name: string|null) => {
           @click="toggleStuff(item, 'staple')"
         >
           <span>{{ item.emoji }}</span>
-          <span m="l-1">{{ $t('staple.' + item.name) }}</span>
+          <span m="l-1">{{ $t(`staple.${item.name}`) }}</span>
         </StapleTag>
       </div>
     </div>
@@ -133,7 +124,7 @@ const translate = (food: any, name: string|null) => {
           <span v-else-if="item.icon" class="inline-flex">
             <div :class="item.icon" />
           </span>
-          <span class="inline-flex" m="l-1">{{ $t('tools.' + item.name) }}</span>
+          <span class="inline-flex" m="l-1">{{ $t(`tools.${item.name}`) }}</span>
         </ToolTag>
       </div>
     </div>

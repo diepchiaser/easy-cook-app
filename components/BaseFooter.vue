@@ -49,7 +49,7 @@ onBeforeMount(() => {
         May your culinary journey be filled with exquisite flavors and unforgettable experiences. </a>
     </div>
     <div class="gif-sisignature">
-        <img src="/img/cooks_signature.gif" alt="Cook's Signature" width="300" height="150">
+      <img src="/img/cooks_signature.gif" alt="Cook's Signature" width="300" height="150">
     </div>
   </div>
 </template>

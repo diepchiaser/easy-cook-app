@@ -5,7 +5,7 @@ const { random, randomRecipes } = useRandomRecipe(count)
 
 <template>
   <div inline-flex m="y-3">
-    <van-stepper @plus="inc()" @minus="dec()" :default-value="count" theme="round" button-size="22" disable-input />
+    <van-stepper :default-value="count" theme="round" button-size="22" disable-input @plus="inc()" @minus="dec()" />
   </div>
 
   <button cursor-pointer class="inline-flex inline-flex items-center justify-center rounded-md border-none bg-blue-600 px-3 py-1.5 text-sm text-white font-semibold leading-6 shadow-sm hover:bg-blue-500 focus-visible:outline-2 focus-visible:outline-blue-600 focus-visible:outline-offset-2 focus-visible:outline" @click="random">

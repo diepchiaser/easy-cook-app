@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const router = useIonRouter();
+const router = useIonRouter()
 const goBack = () => router.push('/')
 </script>
 

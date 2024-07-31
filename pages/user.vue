@@ -1,18 +1,19 @@
 <script lang="ts" setup>
 import { links } from '~/constants'
-const router = useIonRouter();
-const backHelp = () => {
-  router.push('/help');
+
+const router = useIonRouter()
+function backHelp() {
+  router.push('/help')
 }
-const nextHome = () => {
-  router.push('/');
+function nextHome() {
+  router.push('/')
 }
-const handleRefresh = (event: CustomEvent) => {
-    setTimeout(() => {
-      if (event.target) {
-        (event.target as HTMLIonRefresherElement).complete();
-      }
-    }, 2000);
+function handleRefresh(event: CustomEvent) {
+  setTimeout(() => {
+    if (event.target) {
+      (event.target as HTMLIonRefresherElement).complete()
+    }
+  }, 2000)
 }
 </script>
 
@@ -21,20 +22,27 @@ const handleRefresh = (event: CustomEvent) => {
     <ion-header>
       <ion-toolbar>
         <van-nav-bar
-          title="My"
-          left-text="FAQ"
-          :right-text="$t('首页')"
-          left-arrow
+          :title="$t('我的')"
           @click-left="backHelp"
           @click-right="nextHome"
-        />
+        >
+          <template #left>
+            <van-icon name="question-o" size="30" />
+          </template>
+
+          <template #right>
+            <van-icon name="wap-home-o" dot size="30" />
+          </template>
+        </van-nav-bar> 
       </ion-toolbar>
     </ion-header>
 
     <ion-content>
-      <ion-refresher slot="fixed" :pull-factor="0.5" :pull-min="100" :pull-max="200" @ionRefresh="handleRefresh($event)">
-        <ion-refresher-content></ion-refresher-content>
-      </ion-refresher>
+      <template #fixed>
+        <ion-refresher :pull-factor="0.5" :pull-min="100" :pull-max="200" @ion-refresh="handleRefresh($event)">
+          <ion-refresher-content />
+        </ion-refresher>
+      </template>
       <div>
         <div
           class="mx-auto max-w-md w-full"
@@ -62,7 +70,7 @@ const handleRefresh = (event: CustomEvent) => {
           </YlfForm>
         </div>
         <BaseFooter mt-4 />
-       </div>
+      </div>
     </ion-content>
   </ion-page>
 </template>

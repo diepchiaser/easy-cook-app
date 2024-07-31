@@ -1,11 +1,11 @@
 {
-    "apps": [
-        {
-            "appId": "ace12bcd",
-            "dependencyInstallCommand": "pnpm install",
-            "webBuildCommand": "pnpm build",
-            "androidPath": "android",
-            "webBuildDir": ".output/public"
-        }
-    ]
+  "apps": [
+    {
+      "appId": "ace12bcd",
+      "dependencyInstallCommand": "pnpm install",
+      "webBuildCommand": "pnpm build",
+      "androidPath": "android",
+      "webBuildDir": ".output/public"
+    }
+  ]
 }

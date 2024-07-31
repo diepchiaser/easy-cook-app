@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { BottomMenuItem } from '@yunlefun/vue'
-const $t = useTranslation();
+
+const $t = useTranslation()
 
 const items: BottomMenuItem[] = [
   {

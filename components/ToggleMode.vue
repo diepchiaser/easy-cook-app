@@ -16,7 +16,6 @@ const searchModes: {
   id: 'survival',
   name: '生存模式',
 }]
-
 </script>
 
 <template>

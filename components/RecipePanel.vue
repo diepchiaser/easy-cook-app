@@ -34,7 +34,7 @@ const pageCount = computed(() => Math.ceil(rStore.recipesLength / rStore.itemsPe
 
       <Transition mode="out-in">
         <span v-if="showTooltip" text="sm" p="2">
-        {{ $t('你要先选食材或工具哦') }}～
+          {{ $t('你要先选食材或工具哦') }}～
         </span>
 
         <div

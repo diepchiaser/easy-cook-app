@@ -2,7 +2,6 @@ import process from 'node:process'
 import { pwa } from './config/pwa'
 import { appDescription } from './constants/index'
 
-
 Object.assign(process.env, {
   VITE_COMMIT_REF: process.env.CF_PAGES_COMMIT_SHA || '',
 })
@@ -24,10 +23,10 @@ export default defineNuxtConfig({
     // fix QQ in iOS
     // See https://github.com/unjs/ofetch/pull/366
     'nuxt-fix-ofetch',
-    "@nuxtjs/ionic",
-    "@nuxtjs/i18n",
-    "@vant/nuxt",
-    "nuxt-icons"
+    '@nuxtjs/ionic',
+    '@nuxtjs/i18n',
+    '@vant/nuxt',
+    'nuxt-icons',
   ],
 
   plugins: [

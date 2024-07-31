@@ -1,6 +1,6 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useGtm } from '@gtm-support/vue-gtm'
 import { db } from '../../utils/db'
 import { useAppStore } from './app'
@@ -18,7 +18,7 @@ export type SearchMode = 'survival' | 'loose' | 'strict'
 export const useRecipeStore = defineStore('recipe', () => {
   const gtm = useGtm()
   const { settings } = useAppStore()
-  const $t = useTranslation();
+  const $t = useTranslation()
 
   /**
    * 搜索关键字
@@ -121,12 +121,12 @@ export const useRecipeStore = defineStore('recipe', () => {
     }
 
     if (keyword.value) {
-      result = result.filter(item => {
-        const name = $t(`dishTag.${item.name}`).toLowerCase();
-        return name.includes(keyword.value.toLowerCase());
-      });
-    }    
-    
+      result = result.filter((item) => {
+        const name = $t(`dishTag.${item.name}`).toLowerCase()
+        return name.includes(keyword.value.toLowerCase())
+      })
+    }
+
     recipesLength.value = result.length
     const start = (currentPage.value - 1) * itemsPerPage.value
     const end = start + itemsPerPage.value
@@ -172,11 +172,11 @@ export const useRecipeStore = defineStore('recipe', () => {
 
   const changePage = () => {
     if (currentPage.value < recipesLength.value) {
-        currentPage.value++;
+      currentPage.value++
     }
 
     if (currentPage.value > recipesLength.value) {
-        currentPage.value--;
+      currentPage.value--
     }
   }
 

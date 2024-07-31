@@ -1,32 +1,38 @@
 import type { Ref } from 'vue'
-import { useI18n } from 'vue-i18n';
+import { useI18n } from 'vue-i18n'
 
-export const useI18nLocale = () => {
-    const { locale } = useI18n()
-    return locale;
-};
-
-export const useTranslation = () => {
-    const { t } = useI18n()
-    return t;
+export function useI18nLocale() {
+  const { locale } = useI18n()
+  return locale
 }
 
-export const useLocale = () => {
+export function useTranslation() {
+  const { t } = useI18n()
+  return t
+}
+
+export function useLocale() {
   return useState<string>('locale', () => useI18nLocale())
 }
 
-export const useLocales = () => {
-    const locale = useLocale();
-    const locales = ref([
-        { text: 'English', value: 'en'},
-        { text: 'Vietnamese', value: 'vi'},
-    ])
+export function useLocales() {
+  const locale = useLocale()
+  const locales = ref([
+    { text: 'English', value: 'en' },
+    { text: 'Vietnamese', value: 'vi' },
+  ])
 
-    if (!locales.value.includes(locale.value)) locales.value.unshift(locale.value)
+  if (!locales.value.includes(locale.value))
+    locales.value.unshift(locale.value)
 
-    return locales
+  return locales
 }
 
-export const useLocaleDate = (date: Ref<Date> | Date, locale = useLocale()) => {
-    return computed(() => new Intl.DateTimeFormat(locale.value, { dateStyle: 'medium' }).format(unref(date)))
+export function useLocaleDate(date: Ref<Date> | Date, locale = useLocale()) {
+  const options = {
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+  }
+  return computed(() => new Intl.DateTimeFormat(locale.value, options).format(unref(date)))
 }

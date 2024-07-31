@@ -19,7 +19,7 @@ import { links } from '~/constants'
       :href="links.feedback" target="_blank"
       alt="通过兔小巢反馈"
     >
-    {{ $t('立即反馈') }}
+      {{ $t('立即反馈') }}
     </a>
   </div>
 </template>
