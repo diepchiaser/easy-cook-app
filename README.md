@@ -5,13 +5,13 @@
   <br>
   <br>
 
-  [![license](https://img.shields.io/github/license/your-repo/cook.svg)](LICENSE)
-  [![repo-size](https://img.shields.io/github/repo-size/your-repo/cook.svg)](repo-size)
-  [![last-commit](https://img.shields.io/github/last-commit/your-repo/cook.svg)](last-commit)
-  [![stars](https://img.shields.io/github/stars/your-repo/cook.svg)](stars)
-  [![forks](https://img.shields.io/github/forks/your-repo/cook.svg)](forks)
-  [![release](https://img.shields.io/github/release/your-repo/cook.svg)](release)
-  [![watchers](https://img.shields.io/github/watchers/your-repo/cook.svg)](watchers)
+  [![license](https://img.shields.io/github/license/diepchiaser/easy-cook-app.svg)](LICENSE)
+  [![repo-size](https://img.shields.io/github/repo-size/diepchiaser/easy-cook-app.svg)](repo-size)
+  [![last-commit](https://img.shields.io/github/last-commit/diepchiaser/easy-cook-app.svg)](last-commit)
+  [![stars](https://img.shields.io/github/stars/diepchiaser/easy-cook-app.svg)](stars)
+  [![forks](https://img.shields.io/github/forks/diepchiaser/easy-cook-app.svg)](forks)
+  [![release](https://img.shields.io/github/release/diepchiaser/easy-cook-app.svg)](release)
+  [![watchers](https://img.shields.io/github/watchers/diepchiaser/easy-cook-app.svg)](watchers)
 
   <h1>Cook App</h1>
 </div>
@@ -36,6 +36,15 @@ Cook provides a user-friendly interface to explore a vast collection of recipes,
 
 - [Cook Web App](https://cook-livid.vercel.app/) - Explore the full version on the web
 - [Cook Community](https://cookcommunity.vercel.app/) - Join our community for more interactions
+
+<p align="center">
+    <img alt="easy cook logo" width="100%" src="https://raw.githubusercontent.com/diepchiaser/easy-cook-app/76bbac4d200a6f7ed41693fd44095c28b0b7737e/public/img/1.svg">
+    <img alt="easy cook logo" width="100%" src="https://raw.githubusercontent.com/diepchiaser/easy-cook-app/76bbac4d200a6f7ed41693fd44095c28b0b7737e/public/img/2.svg">
+    <img alt="easy cook logo" width="100%" src="https://raw.githubusercontent.com/diepchiaser/easy-cook-app/76bbac4d200a6f7ed41693fd44095c28b0b7737e/public/img/3.svg">
+    <img alt="easy cook logo" width="100%" src="https://raw.githubusercontent.com/diepchiaser/easy-cook-app/76bbac4d200a6f7ed41693fd44095c28b0b7737e/public/img/4.svg">
+    <img alt="easy cook logo" width="100%" src="https://raw.githubusercontent.com/diepchiaser/easy-cook-app/76bbac4d200a6f7ed41693fd44095c28b0b7737e/public/img/5.svg">
+    <img alt="easy cook logo" width="100%" src="https://raw.githubusercontent.com/diepchiaser/easy-cook-app/76bbac4d200a6f7ed41693fd44095c28b0b7737e/public/img/6.svg">
+</p>
 
 ## Documentation
 
