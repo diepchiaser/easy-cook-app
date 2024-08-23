@@ -36,6 +36,12 @@ async function showLoading() {
   if (loadingElement) {
     loadingElement.innerHTML = '<img src="/img/loading_cook.gif" alt="Loading...">'
   }
+  // click to redirect
+  loadingElement?.addEventListener('click', () => {
+    // target="_blank" will not work
+    window.open('https://cook-wiki.vercel.app/', '_blank')
+    
+  })
 }
 const themeVars = reactive({ dropdownMenuShadow: 'none' })
 </script>

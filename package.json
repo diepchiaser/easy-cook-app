@@ -55,6 +55,7 @@
     "@pinia/testing": "^0.1.3",
     "@unocss/eslint-config": "^0.59.4",
     "@unocss/nuxt": "^0.59.4",
+    "@unocss/preset-icons": "^0.61.9",
     "@vant/nuxt": "^1.0.5",
     "@varlet/nuxt": "^0.1.5",
     "@vite-pwa/nuxt": "^0.6.0",

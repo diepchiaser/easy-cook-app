@@ -80,7 +80,6 @@ function showDate() {
         <p text="sm" m="b-4">
           {{ $t('cookToday') }}
         </p>
-
         <ChooseFood />
       </Default>
     </ion-content>

@@ -29,6 +29,14 @@ export default defineNuxtConfig({
     'nuxt-icons',
   ],
 
+  unocss: {
+    icons: {
+      extraProperties: {
+        display: "inline-block",
+      }
+    }
+  },
+
   plugins: [
     '~/plugins/i18n.ts',
   ],
