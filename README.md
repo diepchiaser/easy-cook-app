@@ -48,7 +48,7 @@ Cook provides a user-friendly interface to explore a vast collection of recipes,
 
 ## Documentation
 
-For detailed documentation, please visit [Cook Documentation](https://cook-livid.vercel.app/docs).
+For detailed documentation, please visit [Cook Documentation](https://cook-wiki.vercel.app/).
 
 ## Preparation
 - [capacitorjs](https://capacitorjs.com/) - A cross-platform native runtime for web apps.
